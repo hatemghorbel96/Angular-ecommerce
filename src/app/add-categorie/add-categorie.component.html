@@ -1,0 +1,41 @@
+<app-admin-dash></app-admin-dash>
+
+<main class="offcanvas-enabled" style="padding-top: 5rem;">
+  <section class="ps-lg-4 pe-lg-3 pt-4">
+    <div class="px-3 pt-2">
+    <div>
+        <h2>Ajouter une categorie :</h2>
+    </div>
+   
+        <form>
+            <div class="col-sm-2 col-md-2 col-lg-12">
+                <label hidden>ID Produit</label>
+                <input hidden type="text" [(ngModel)]="newCategorie.idCategory" name="idProduit" class="form-control">
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-12">
+                <label>Nom du categorie</label>
+                <input type="text" [(ngModel)]="newCategorie.nomCategory" name="nomProduit" class="form-control">
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-12">
+                <label>description</label>
+                <input type="text" [(ngModel)]="newCategorie.description" name="prixProduit" class="form-control">
+            </div>
+           
+            
+            <div class="mt-2">
+                <button type="submit" (click)="addCategorie()" class="btn btn-success">Ajouter</button>
+
+                <div>
+                   
+                </div>
+
+            </div>
+        </form>
+
+   
+    
+    </div>
+
+
+</section>
+</main>

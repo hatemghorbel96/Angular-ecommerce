@@ -1,0 +1,45 @@
+<app-admin-dash></app-admin-dash>
+
+<main class="offcanvas-enabled" style="padding-top: 5rem;">
+  <section class="ps-lg-4 pe-lg-3 pt-4">
+    <div class="px-3 pt-2">
+
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+        <label class="mb-3">Recherche par categorie</label>
+            <select class="form-control form-control-lg" id="idCat" name="idCat" [(ngModel)]="IdCategorie" (change)="onChange()">
+                <option *ngFor="let cat of categories" value="{{cat.idCategory}}">
+                {{cat.nomCategory}}
+                </option>
+            </select>
+        </div>
+
+    <div class="card shadow mb-4">
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th>id</th><th>Nom</th><th>Prix</th><th>Date Creation</th><th>Categorie</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let p of produits">
+                        <tr >
+                        <td>{{p.idProduit}}</td>
+                        <td> <img class="card-img-top" [src]="p.productImages[0].url" alt="Card image cap" style="width: 50px; height: 50px;">
+                            {{p.nomProduit}}
+                        </td>
+                        <td>{{p.prixProduit}}</td>
+                        <td>{{p.dateCreation | date:'dd/MM/yyyy'}}</td>
+                       <td>{{p.categorie.nomCategory }}</td>
+                        <td><a class="btn btn-success" [routerLink]="['/updateProduit',p.idProduit]">Modifier</a></td>
+                        <!-- <td><a class="btn btn-danger" (click)="supprimerProduit(p)">Supprimer</a></td>  -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+</div>
+
+
+
+</section>
+</main>

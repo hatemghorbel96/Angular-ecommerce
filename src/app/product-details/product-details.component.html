@@ -1,0 +1,618 @@
+      <!-- Page Title-->
+      <div class="page-title-overlap bg-dark pt-4">
+        <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+          <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+                <li class="breadcrumb-item"><a class="text-nowrap" href="index.html"><i class="ci-home"></i>Home</a></li>
+                <li class="breadcrumb-item text-nowrap"><a href="#">Shop</a>
+                </li>
+                <li class="breadcrumb-item text-nowrap active" aria-current="page">{{produit.nomProduit}}</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+            <h1 class="h3 text-light mb-0">{{produit.nomProduit}}</h1>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <!-- Gallery + details-->
+        <div class="bg-light shadow-lg rounded-3 px-4 py-3 mb-5">
+          <div class="px-lg-3">
+            <div class="row">
+              <!-- Product gallery-->
+              <div class="col-lg-7 pe-lg-0 pt-lg-4">
+                <div class="product-gallery">
+                  <div class="product-gallery-preview order-sm-2">
+
+                   <!--  <div class="product-gallery-preview-item " [ngClass]="(i == 0) ? 'active' : ''"  *ngFor="let p of produit.productImages ; let i=index" id="{{i}}">
+                      <img class="image-zoom" [src]="p.url"   alt="Product image"> 
+                     
+                    </div> -->
+
+
+                    <div class="product-gallery-preview-item active" >
+                      <img class="image-zoom" [src]="produit.productImages[selectedProductIndex].url" data-zoom="produit.productImages[selectedProductIndex].url"> 
+                     
+                    </div>
+                  
+
+                   <!--  <div class="product-gallery-preview-item active" id="first">
+                      <img class="image-zoom" [src]="produit.productImages[0].url"  alt="Product image">
+                     
+                    </div>
+
+                    <div class="product-gallery-preview-item" *ngIf="produit.productImages[1]?.url">
+                      <img class="image-zoom" [src]="produit.productImages[1]?.url"  alt="Product image">
+                     
+                    </div>
+                    <div class="product-gallery-preview-item" *ngIf="produit.productImages[2]?.url">
+                      <img class="image-zoom" [src]="produit.productImages[2]?.url"  alt="Product image">
+                     
+                    </div> -->
+                  
+                  </div>
+                  <div class="product-gallery-thumblist order-sm-1" >
+
+                  <a class="product-gallery-thumblist-item  " (click)="changeindex(i)" *ngFor="let p of produit.productImages ; let i=index" [ngClass]="(i == selectedProductIndex) ? 'active' : ''">
+                    <img [src]="p.url" alt="Product thumb"> 
+                  </a>
+                 
+                
+
+                  </div>
+                
+                  
+                 
+                </div>
+              </div>
+              <!-- Product details-->
+              <div class="col-lg-5 pt-4 pt-lg-0">
+                <div class="product-details ms-auto pb-3">
+                  <div class="d-flex justify-content-between align-items-center mb-2"><a href="#reviews" data-scroll>
+
+                     
+                      
+                      <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>4.5">
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                      </div>
+        
+                      <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )==4.5 ">
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-half active star-rating-icon"></i>
+                      </div>
+        
+                      <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>=4 && ((comments | sum:'rating') / comments.length )<4.5">
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                      </div>
+        
+                      <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>=3.5 && ((comments | sum:'rating') / comments.length )<4">
+                        <i class="ci-star-filled active star-rating-icon "></i>
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-half active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                      </div>
+        
+                      <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>=3 && ((comments | sum:'rating') / comments.length )<3.5">
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                      </div>
+        
+                      <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>=2.5 && ((comments | sum:'rating') / comments.length )<3">
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-half active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                      </div>
+        
+                      <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>=2 && ((comments | sum:'rating') / comments.length )<2.5">
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                      </div>
+        
+                      <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>=1.5 && ((comments | sum:'rating') / comments.length )<2">
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star-half active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                      </div>
+        
+                      <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>=1 && ((comments | sum:'rating') / comments.length )<1.5">
+                        <i class="ci-star-filled active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                      </div>
+        
+                      <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>=0 && ((comments | sum:'rating') / comments.length )<1">
+                        <i class="ci-star active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                        <i class="ci-star active star-rating-icon"></i>
+                      </div>
+                      
+                      <span class="d-inline-block  text-body align-middle mt-1 ms-1">{{comments.length}} Reviews</span></a>
+                    <button class="btn-wishlist me-0 me-lg-n3" type="button" data-bs-toggle="tooltip" title="Add to wishlist"><i class="ci-heart"></i></button>
+                  </div>
+
+                  <div *ngIf="(produit.promo)!=null">
+                    <div class="mb-3">
+                      <span class="h3 fw-normal star-rating-icon">{{produit.promo}} DT</span>
+                    <del class="text-muted fs-lg me-3" >{{produit.prixProduit}}</del><span class="badge bg-success badge-shadow align-middle mt-n2">Promo</span>
+                    </div>
+                  </div>
+
+                  <div *ngIf="(produit.promo)==null">
+                    <div class="mb-3"><span class="h3 fw-normal star-rating-icon">{{produit.prixProduit}} DT</span>
+                    
+                  </div>
+
+                 
+
+
+                  </div>
+                 
+                  <div class="position-relative me-n4 mb-3">
+                   
+                   
+                    <div class="product-badge product-available  mb-5"><i class="ci-security-check"></i>Product available</div>
+                  </div>
+                  <form class="mb-grid-gutter" method="post">
+                   
+                    <div class="mb-3 d-flex align-items-center">
+                     
+                      <button (click)="addToCart()" class="btn btn-primary btn-shadow d-block w-100" type="submit"><i class="ci-cart fs-lg me-2"></i>Ajouter au panier</button>
+                    </div>
+                  </form>
+                  <!-- Product panels-->
+                  <div class="accordion mb-4" id="productPanels">
+                    <div class="accordion-item">
+                      <h3 class="accordion-header"><a class="accordion-button" href="#productInfo" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="productInfo"><i class="ci-announcement text-muted fs-lg align-middle mt-n1 me-2"></i>Product info</a></h3>
+                      <div class="accordion-collapse collapse show" id="productInfo" data-bs-parent="#productPanels">
+                        <div class="accordion-body">
+                          <h6 class=" mb-2">Composition</h6>
+                          <ul class=" ps-4">
+                            <li>description</li>
+                           
+                          </ul>
+                          <h6 class=" mb-2">Art. No.</h6>
+                          <ul class=" ps-4 mb-0">
+                            <li>12345</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h3 class="accordion-header"><a class="accordion-button collapsed" href="#shippingOptions" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="shippingOptions"><i class="ci-delivery text-muted lead align-middle mt-n1 me-2"></i>Shipping options</a></h3>
+                      <div class="accordion-collapse collapse" id="shippingOptions" data-bs-parent="#productPanels">
+                        <div class="accordion-body ">
+                          <div class="d-flex justify-content-between border-bottom pb-2">
+                            <div>
+                              <div class="fw-semibold text-dark">Courier</div>
+                              <div class=" text-muted">2 - 4 days</div>
+                            </div>
+                            <div>$26.50</div>
+                          </div>
+                          <div class="d-flex justify-content-between border-bottom py-2">
+                            <div>
+                              <div class="fw-semibold text-dark">Local shipping</div>
+                              <div class=" text-muted">up to one week</div>
+                            </div>
+                            <div>$10.00</div>
+                          </div>
+                          <div class="d-flex justify-content-between border-bottom py-2">
+                            <div>
+                              <div class="fw-semibold text-dark">Flat rate</div>
+                              <div class=" text-muted">5 - 7 days</div>
+                            </div>
+                            <div>$33.85</div>
+                          </div>
+                          <div class="d-flex justify-content-between border-bottom py-2">
+                            <div>
+                              <div class="fw-semibold text-dark">UPS ground shipping</div>
+                              <div class=" text-muted">4 - 6 days</div>
+                            </div>
+                            <div>$18.00</div>
+                          </div>
+                          <div class="d-flex justify-content-between pt-2">
+                            <div>
+                              <div class="fw-semibold text-dark">Local pickup from store</div>
+                              <div class=" text-muted">&mdash;</div>
+                            </div>
+                            <div>$0.00</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Product description section 1-->
+       
+     
+      </div>
+      <!-- Reviews-->
+      <div class="border-top border-bottom my-lg-3 py-5">
+        <div class="container pt-md-2" id="reviews">
+          <div class="row pb-3">
+            <div class="col-lg-4 col-md-5">
+              <h2 class="h3 mb-4">{{comments.length }} Reviews</h2>
+             
+              
+             
+              
+
+              <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>4.5">
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-filled  star-rating-icon"></i>
+              </div>
+
+              <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )==4.5 ">
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-half  star-rating-icon"></i>
+              </div>
+
+              <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>=4 && ((comments | sum:'rating') / comments.length )<4.5">
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+              </div>
+
+              <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>=3.5 && ((comments | sum:'rating') / comments.length )<4">
+                <i class="ci-star-filled  star-rating-icon "></i>
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-half  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+              </div>
+
+              <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>=3 && ((comments | sum:'rating') / comments.length )<3.5">
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+              </div>
+
+              <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>=2.5 && ((comments | sum:'rating') / comments.length )<3">
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-half  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+              </div>
+
+              <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>=2 && ((comments | sum:'rating') / comments.length )<2.5">
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+              </div>
+
+              <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>=1.5 && ((comments | sum:'rating') / comments.length )<2">
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star-half  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+              </div>
+
+              <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>=1 && ((comments | sum:'rating') / comments.length )<1.5">
+                <i class="ci-star-filled  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+              </div>
+
+              <div class="star-rating me-2" *ngIf=" ((comments | sum:'rating') / comments.length )>=0 && ((comments | sum:'rating') / comments.length )<1">
+                <i class="ci-star  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+                <i class="ci-star  star-rating-icon"></i>
+              </div>
+
+
+              <span class="d-inline-block align-middle">{{ ((comments | sum:'rating') / comments.length )| number : '1.0-2' }} Overall rating</span>
+             
+            </div>
+            <div class="col-lg-8 col-md-7">
+              <div class="d-flex align-items-center mb-2">
+                <div class="text-nowrap me-3"><span class="d-inline-block align-middle text-muted">5</span><i class="ci-star-filled fs-xs ms-1"></i></div>
+                <div class="w-100">
+                  <div class="progress" style="height: 4px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div><span class="text-muted ms-3">43</span>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <div class="text-nowrap me-3"><span class="d-inline-block align-middle text-muted">4</span><i class="ci-star-filled fs-xs ms-1"></i></div>
+                <div class="w-100">
+                  <div class="progress" style="height: 4px;">
+                    <div class="progress-bar" role="progressbar" style="width: 27%; background-color: #a7e453;" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div><span class="text-muted ms-3">16</span>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <div class="text-nowrap me-3"><span class="d-inline-block align-middle text-muted">3</span><i class="ci-star-filled fs-xs ms-1"></i></div>
+                <div class="w-100">
+                  <div class="progress" style="height: 4px;">
+                    <div class="progress-bar" role="progressbar" style="width: 17%; background-color: #ffda75;" aria-valuenow="17" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div><span class="text-muted ms-3">9</span>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <div class="text-nowrap me-3"><span class="d-inline-block align-middle text-muted">2</span><i class="ci-star-filled fs-xs ms-1"></i></div>
+                <div class="w-100">
+                  <div class="progress" style="height: 4px;">
+                    <div class="progress-bar" role="progressbar" style="width: 9%; background-color: #fea569;" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div><span class="text-muted ms-3">4</span>
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="text-nowrap me-3"><span class="d-inline-block align-middle text-muted">1</span><i class="ci-star-filled fs-xs ms-1"></i></div>
+                <div class="w-100">
+                  <div class="progress" style="height: 4px;">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 4%;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div><span class="text-muted ms-3">2</span>
+              </div>
+            </div>
+          </div>
+          <hr class="mt-4 mb-3">
+          <div class="row pt-4">
+            <!-- Reviews list-->
+            <div class="col-md-7">
+              <div class="d-flex justify-content-end pb-4">
+                <div class="d-flex align-items-center flex-nowrap">
+                  <label class=" text-muted text-nowrap me-2 d-none d-sm-block" for="sort-reviews">Sort by:</label>
+                  <select class="form-select form-select-sm" id="value1" [(ngModel)]="value1">
+                    <option [value]="1">Newest</option>
+                    <option [value]="2">Oldest</option>
+                    
+                    <option [value]="3">High rating</option>
+                    <option [value]="4">Low rating</option>
+                  </select>
+                </div>
+              </div>
+              <!-- Review-->
+             
+       
+
+              <div  class="product-review pb-4 mb-4 border-bottom" *ngFor="let c of sortBy()" >
+                <div class="d-flex mb-3" >
+                  <div class="d-flex align-items-center me-4 pe-2"><img class="rounded-circle" src="assets/user/user.png" width="50" alt="{{c.user.username}}">
+                    <div class="ps-3">
+                      <h6 class=" mb-0">{{c.user.username}}</h6>
+                      <span *ngIf="(c.dateCreation)==(c.dateCreation)" class="fs-ms text-muted">{{c.dateCreation  | date:'dd/MM/yyyy - H:mm'}}</span>
+                      <span *ngIf="(c.dateCreation)==null" class="fs-ms text-muted"> Updated At {{c.updatedAt  | date:'dd/MM/yyyy - H:mm'}}</span>
+                    </div>
+                    
+                  </div>
+                  <div>
+                    <!-- 5 stars-->
+                    <div class="star-rating" *ngIf="c.rating==5">                  
+                     <i class="star-rating-icon ci-star-filled active"></i>
+                     <i class="star-rating-icon ci-star-filled active"></i>
+                     <i class="star-rating-icon ci-star-filled active"></i>
+                     <i class="star-rating-icon ci-star-filled active"></i>
+                     <i class="star-rating-icon ci-star-filled active"></i>
+                    </div>
+                     <!-- 4 stars-->
+                    <div class="star-rating" *ngIf="c.rating==4">                  
+                      <i class="star-rating-icon ci-star-filled active"></i>
+                      <i class="star-rating-icon ci-star-filled active"></i>
+                      <i class="star-rating-icon ci-star-filled active"></i>
+                      <i class="star-rating-icon ci-star-filled active"></i>
+                      <i class="star-rating-icon ci-star"></i>
+                     </div>
+                    <!-- 3 stars-->
+                     <div class="star-rating" *ngIf="c.rating==3">                   
+                      <i class="star-rating-icon ci-star-filled active"></i>
+                      <i class="star-rating-icon ci-star-filled active"></i>
+                      <i class="star-rating-icon ci-star-filled active"></i>
+                      <i class="star-rating-icon ci-star"></i>
+                      <i class="star-rating-icon ci-star"></i>
+                     </div>
+
+                      <!-- 2 stars-->
+                     <div class="star-rating" *ngIf="c.rating==2">                   
+                      <i class="star-rating-icon ci-star-filled active"></i>
+                      <i class="star-rating-icon ci-star-filled active"></i>
+                      <i class="star-rating-icon ci-star"></i>
+                      <i class="star-rating-icon ci-star"></i>
+                      <i class="star-rating-icon ci-star"></i>
+                     </div>
+
+                      <!-- 1 stars-->
+                     <div class="star-rating" *ngIf="c.rating==1">
+                     <i class="star-rating-icon ci-star-filled active"></i>
+                      <i class="star-rating-icon ci-star"></i>
+                      <i class="star-rating-icon ci-star"></i>
+                      <i class="star-rating-icon ci-star"></i>
+                      <i class="star-rating-icon ci-star"></i>
+                     </div>
+                   
+                  </div>
+                 
+                </div> 
+
+                <!-- edit / supp -->
+
+                
+
+                <div style="float: right;" class="ml-3">
+                 
+                  <div class="text-nowrap" *ngIf="(c.user.username)==(authService.loggedUser)">
+                    <a class="btn btn-outline-info btn-icon " data-bs-toggle="modal" href="#exampleModalToggle" (click)="getcomment(c.idComment)">
+                      <i class="ci-edit"></i>
+                    </a> 
+                    <button class="btn btn-outline-danger btn-icon " (click)="supprimerComment(c)">
+                      X
+                     </button>
+                   
+                  </div>
+                  
+                
+                </div>
+                
+                <p class="fs-md mb-2">{{c.content}}</p>
+                
+                
+                
+              
+                
+                <!-- modal -->
+
+                 
+
+                <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel">
+                          <span *ngIf="(currentComment.dateCreation)==(currentComment.dateCreation)" class="fs-ms text-muted">{{currentComment.dateCreation  | date:'dd/MM/yyyy - H:mm'}}</span>
+                          <span *ngIf="(currentComment.dateCreation)==null" class="fs-ms text-muted"> Updated At {{currentComment.updatedAt  | date:'dd/MM/yyyy - H:mm'}}</span>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <form >
+                      <div class="modal-body">
+                        
+
+                         <label class="form-label" for="review-rating">Edit Rating<span class="text-danger">*</span></label>
+                         <select class="form-select" required  id="newComment.rating" name="newComment.rating" [(ngModel)]="currentComment.rating">
+                           <option [value]="">Choose rating</option>
+                           <option [value]="5"> ★★★★★ (5/5)</option>
+                           <option [value]="4">★★★★☆ (4/5)</option>
+                           <option [value]="3">★★★☆☆ (3/5)</option>
+                           <option [value]="2">★★☆☆☆ (2/5)</option>
+                           <option [value]="1">★☆☆☆☆ (1/5)</option>
+                         </select>
+
+                         <label class="form-label" for="review-text">Edit Review<span class="text-danger">*</span></label>
+                         <textarea class="form-control" rows="6" required id="currentComment.content" name="currentComment.content" [(ngModel)]="currentComment.content"></textarea>
+                        
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-primary" type="submit" (click)="updateComment()" data-bs-dismiss="modal">save</button>
+                      </div>
+                    </form>
+                    </div>
+                    
+                  </div>
+                </div>
+             
+
+                <!-- endmodel-->
+                
+              
+              </div>
+              
+           
+              <div class="text-center">
+                <button class="btn btn-outline-accent" type="button"><i class="ci-reload me-2"></i>Load more reviews</button>
+              </div>
+            </div>
+            <!-- Leave review form-->
+            <div class="col-md-5 mt-2 pt-4 mt-md-0 pt-md-0">
+
+              <div *ngIf="successComment">
+                  <div *ngIf="successComment==1" class="alert alert-success" role="alert">
+                    Comment added with success
+                  </div>
+                  <div *ngIf="successComment==2" class="alert alert-info" role="alert">
+                    Comment edited
+                  </div>
+                  <div *ngIf="successComment==3" class="alert alert-danger" role="alert">
+                   Comment deleted
+                  </div>
+                  
+                  
+                </div>
+
+               
+
+              <div class="bg-secondary py-grid-gutter px-grid-gutter rounded-3">
+                <h3 class="h4 pb-2">Write a review</h3>
+                <form class="needs-validation">
+                 
+                 
+                  <div class="mb-3">
+                    <label class="form-label" for="review-rating">Rating<span class="text-danger">*</span></label>
+                    <select class="form-select" required  id="newComment.rating" name="newComment.rating" [(ngModel)]="newComment.rating">
+                      <option [value]="">Choose rating</option>
+                      <option [value]="5"> ★★★★★ (5/5)</option>
+                      <option [value]="4">★★★★☆ (4/5)</option>
+                      <option [value]="3">★★★☆☆ (3/5)</option>
+                      <option [value]="2">★★☆☆☆ (2/5)</option>
+                      <option [value]="1">★☆☆☆☆ (1/5)</option>
+                    </select>
+                    
+                    <div class="invalid-feedback">Please choose rating!</div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" for="review-text">Review<span class="text-danger">*</span></label>
+                    <textarea class="form-control" rows="6" required id="newComment.content" name="newComment.content" [(ngModel)]="newComment.content"></textarea>
+                    <div class="invalid-feedback">Please write a review!</div><small class="form-text text-muted">Your review must be at least 50 characters.</small>
+                  </div>
+                  
+                  
+                  <button class="btn btn-primary btn-shadow d-block w-100" type="submit" (click)="addComment()"  [disabled]="(isLoading$ | async)">
+                    <i *ngIf="isLoading$ | async" class="fas fa-spinner fa-spin"></i>
+                    <span *ngIf="isLoading$ | async">Saving...</span>
+                    <span *ngIf="!(isLoading$ | async)">Submit a Review</span>
+                    
+                  
+                  </button>
+                  
+               
+
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+     
+    
+   

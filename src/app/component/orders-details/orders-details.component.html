@@ -1,0 +1,127 @@
+<app-admin-dash></app-admin-dash>
+
+<main class="offcanvas-enabled" style="padding-top: 5rem;">
+  <section class="ps-lg-4 pe-lg-3 pt-4">
+    <div class="px-3 pt-2">
+
+    <div *ngIf="successMessage">
+    <div *ngIf="currentOrder.status==1" class="alert alert-danger" >
+        {{ successMessage }}
+      </div>
+      <div *ngIf="currentOrder.status==2" class="alert alert-info" >
+        {{ successMessage }}
+      </div>
+      <div *ngIf="currentOrder.status==3" class="alert alert-primary" >
+        {{ successMessage }}
+      </div>
+      <div *ngIf="currentOrder.status==4" class="alert alert-success" >
+        {{ successMessage }}
+      </div>
+    </div>
+
+    <div class="card shadow mb-4">
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>user</th>
+                            <th>date</th>
+                            <th>Total items</th>
+                            <th>Prix</th>
+                            <th>order tracking</th>
+                            <th>status</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr >
+                            <td>{{order.id}}</td>
+                            <td>{{order.user.username}}</td>
+                            <td>{{order.dateCreated | date:'dd/MM/yyyy - H:mm'}}</td>
+                        <td>{{order.totalQuantity}}</td>
+                        <td>{{order.totalPrice | currency:' DT '}}</td>
+                        <td>{{order.orderTrackingNumber}}</td>
+                        <td class="text-center">
+                            <span *ngIf="currentOrder.status==1" class="badge bg-danger"> not verfied</span>
+                            <span *ngIf="currentOrder.status==2" class="badge bg-info"> verfied</span>
+                            <span *ngIf="currentOrder.status==3" class="badge bg-primary"> shipping</span>
+                            <span *ngIf="currentOrder.status==4" class="badge bg-success"> delivred</span>
+                        </td>
+                  
+                           </tr>
+                               
+                
+                    
+                       <!--    <td><a class="btn btn-success" [routerLink]="['/updateCategorie',o.idCategory]">Modifier</a>  </td>  -->
+                       
+                    </tbody>
+                </table>
+                
+                details prod:
+                <hr>
+                <br>
+                <div *ngFor="let o of order.orderItems" class="mb-3">
+
+                    <div *ngFor="let p of produits">
+                        
+                        <div *ngIf="o.prodname==p.nomProduit">
+                            <img class="image-zoom" [src]="p.productImages[0].url" data-zoom="img/shop/single/gallery/01.jpg" alt="Product image" style="width: 50px;">
+                        </div>
+
+                    </div>
+                   
+                    
+                    {{o.prodname}}
+                    {{(o.unitPrice | currency:' DT ')}}
+                    * {{o.quantity}}
+                </div>
+
+             
+
+            <table class="table table-bordered p-5">
+
+                <tr>
+                    <th>shippingAddress:</th>
+                    <th>billingAddress:</th>
+                </tr>
+                <tr>
+                    <td>
+                        {{order.shippingAddress.street}}
+                        {{order.shippingAddress.state}}
+                        {{order.shippingAddress.country}}
+                        {{order.shippingAddress.zipCode}}
+                    </td>
+                    <td>
+                    {{order.billingAddress.street}}
+                    {{order.billingAddress.state}}
+                    {{order.billingAddress.country}}
+                    {{order.billingAddress.zipCode}}
+                    </td>
+                </tr>
+
+
+            </table>
+           
+            <form class="p-5">
+                <div class="row">
+                <!-- <input type="number" [(ngModel)]= "currentOrder.status"name="status" class="form-control"> -->
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <label class="mb-3">status</label>
+                    
+                <select class="form-control form-control" id="currentOrder.status" name="currentOrder.status" [(ngModel)]="currentOrder.status" (change)="updateOrder()">
+                    <option [value]="1" selected>not verfied  </option>
+                    <option [value]="2" selected>verfied  </option>
+                    <option [value]="3" selected>shipping  </option>
+                    <option [value]="4" selected>delivred  </option>                   
+                </select> 
+
+                </div> 
+            </div>
+            </form>
+    </div>
+</div>
+</div>
+
+</section>
+</main>

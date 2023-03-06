@@ -1,0 +1,68 @@
+<app-admin-dash></app-admin-dash>
+
+<main class="offcanvas-enabled" style="padding-top: 5rem;">
+  <section class="ps-lg-4 pe-lg-3 pt-4">
+    <div class="px-3 pt-2">
+    <div>
+    <h2>Modifier <span class="badge bg-primary">{{currentUser.username}}</span></h2>
+    </div>
+    <form >
+    <div class="col-sm-2 col-md-2 col-lg-2">
+        
+        <input hidden type="text" [(ngModel)]="currentUser.user_id"
+        name="user_id" class="form-control">
+    </div>
+   <!--  <div class="col-sm-4 col-md-4 col-lg-4" >
+        <label >Nom user</label>
+        <input type="text"[(ngModel)]="valuerole"
+        name="username" class="form-control">
+    </div> -->
+
+   <!--  <div class="col-sm-2 col-md-2 col-lg-2">
+        <label >ADMIN</label>
+        <input type="checkbox" [(ngModel)]= "valuerole"name="valuerole" class="form-check">
+    </div>
+
+    <div class="col-sm-2 col-md-2 col-lg-2">
+        <label >USER</label>
+        <input type="checkbox" [(ngModel)]= "valuerole"name="valuerole" class="form-check">
+    </div> -->
+
+    <label>List roles</label>
+    <select class="form-control form-control" id="role" name="role" [(ngModel)]="valuerole">
+    <option *ngFor="let r of roles" [value]="r.role" >
+    {{r.role}}
+    </option>
+    </select>
+      
+    <!-- <div class="col-sm-2 col-md-2 col-lg-2">
+        <label >enabled</label>
+        <input type="checkbox" [(ngModel)]= "currentUser.enabled"name="enabled" class="form-check">
+    </div> -->
+   <!--  <div class="col-sm-2 col-md-2 col-lg-2">
+        
+        <input hidden type="number" [(ngModel)]= "currentUser.password"
+        name="password" class="form-control">
+    </div> -->
+   
+    <div class="col-sm-4 col-md-4 col-lg-4 mt-3">
+        <label >roles</label>
+        <span class="badge bg-primary" *ngFor="let r of currentUser.roles"> {{r.role}}  </span>
+    </div> 
+    
+
+  <!--  <div class="col-sm-4 col-md-4 col-lg-4">
+            <label >roles</label>
+            <span class="badge bg-primary" *ngFor="let r of currentUser.roles"> {{r.role}}  </span>
+    </div>   -->
+    <div class="mt-2 mb-5">
+    <button type="submit" (click)="addrole(currentUser)" class="btn btn-success">add</button> |
+    <button type="submit" (click)="removerole(currentUser)" class="btn btn-success">remove</button>
+    
+    </div>
+    </form>
+</div>
+
+
+</section>
+</main>

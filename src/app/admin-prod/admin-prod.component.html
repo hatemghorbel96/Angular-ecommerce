@@ -1,0 +1,42 @@
+<app-admin-dash></app-admin-dash>
+
+<main class="offcanvas-enabled" style="padding-top: 5rem;">
+  <section class="ps-lg-4 pe-lg-3 pt-4">
+    <div class="px-3 pt-2">
+
+
+   
+    <div class="row mt-3" >
+        <div class="col-4  mt-3" *ngFor="let p of produits">
+          
+
+
+                <div class="card " >
+
+                 
+
+                  
+                    <img class="image-responsive"  [src]="p.productImages[0].url" alt="Card image cap" style="width: 150px; height: 150px;">
+                  
+
+                  <div class="card-body">
+                    <h5 class="card-title">{{p.nomProduit}}</h5>
+                    <p class="card-text">{{p.prixProduit}}</p>
+                    <p class="card-text">{{p.categorie.nomCategory }}</p>
+                    <a *ngIf="authService.isAdmin()" class="btn btn-success" [routerLink]="['/updateProduit',p.idProduit]">Modifier</a> &nbsp;
+                    <a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerProduit(p)">Supprimer</a>
+                    <p class="card-text"><small class="text-muted">{{p.dateCreation | date:'dd/MM/yyyy'}}</small></p>
+                  </div>
+                </div>
+               
+                
+              </div>
+        </div>
+    </div>
+
+
+  </section>
+  </main>
+
+
+

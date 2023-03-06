@@ -1,0 +1,100 @@
+<app-admin-dash></app-admin-dash>
+
+<main class="offcanvas-enabled" style="padding-top: 5rem;">
+  <section class="ps-lg-4 pe-lg-3 pt-4">
+    <div class="px-3 pt-2">
+
+    <!-- <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2 ">
+        <label>Nom Produit</label>
+        <input type="text" class="form-control mb-3" [(ngModel)]="nomProduit" name="nomProduit" >
+        <button type="submit" (click)="rechercherProds()" class="btn btn-primary mb-2 ml-2 ">Rechercher</button>
+        </div>
+        </form>
+
+        <form class="form-inline mb-5 ">
+            <div class="form-group mx-sm-3 mb-2 mt-2 ">
+            <label>Nom Produit en tapant</label>
+            <input class="form-control mt-3" #searchTerm (keyup)="onKeyUp(searchTerm.value)">
+            </div>
+            </form> -->
+           
+            
+            <div align="right">
+                <a class="btn btn-warning" (click)="exporToExcel()" >Tableau en excel</a>
+            </div>
+            <br>
+            <div align="right">
+                <a class="btn btn-warning" (click)="generatepdf()">Imprimer en pdf</a>
+            </div>
+
+            <form class="form-inline">
+                <div class="form-group mx-sm-3 mb-2 mt-2 ">
+                <label>Nom Produit en tapant</label>
+                <input #nom [(ngModel)]="searchTerm" name="searchTerm" class="form-control" >
+                </div>
+            </form>
+                            
+    <div class="card shadow mb-4">
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead class="top">
+                        <tr>
+                       <th>Nom</th><th>best Promo (Max 1)</th><th>pub1 (Max 1)</th><th>Special (Max 3)</th><th>Trend (Max 8)</th><th>Prix</th><th>Date Creation</th><th>Categorie</th>
+                        </tr>
+                    </thead>
+                   <!--  <tbody *ngFor="let p of produits"> -->
+                    <!-- <tbody *ngFor="let p of produits | searchFilter: searchTerm "> -->
+                        <tbody *ngFor="let p of produits | filter:searchTerm ">
+                        <tr >
+                      
+                        <td>
+                            <img class="card-img-top" [src]="p.productImages[0].url" alt="Card image cap" style="width: 50px; height: 50px;">
+                           {{p.nomProduit}}
+                            
+                        </td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input type="checkbox" (click)="bestpromo(p,p.idProduit)"  class="form-check-input" [(ngModel)]="p.bestoffer" name="bestoffer">
+                              </div> 
+
+                        </td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input type="checkbox" (click)="publicite1(p,p.idProduit)"  class="form-check-input" [(ngModel)]="p.pub1" name="pub1">
+                              </div> 
+
+                        </td>
+                        <td>
+
+                            <div class="form-check form-switch">
+                                <input type="checkbox" (click)="publicite2(p,p.idProduit)"  class="form-check-input" [(ngModel)]="p.pub2" name="pub2">
+                              </div> 
+
+                        </td>
+                        <td> 
+                           <div class="form-check form-switch">
+                            <input type="checkbox" (click)="updateStatut(p,p.idProduit)"  class="form-check-input" [(ngModel)]="p.trend" name="trend">
+                                </div> 
+                              <!--   <button (click)="updateStatut(p)" [ngClass]="p.trend==true?'btn-danger':'btn-success'"class="btn">
+                                    <span *ngIf="p.trend==true">Deactiver</span>
+                                    <span *ngIf="p.trend==false">Activé</span>
+                                </button> -->
+                        </td>
+                            
+                        <td>{{p.prixProduit}}</td>
+                        <td>{{p.dateCreation | date:'dd/MM/yyyy'}}</td>
+                       <td>{{p.categorie?.nomCategory }}</td>
+                        <td><a class="btn btn-success" [routerLink]="['/updateProduit',p.idProduit]">Modifier</a></td>
+                       
+                        <!-- <td><a class="btn btn-danger" (click)="supprimerProduit(p)">Supprimer</a></td>  -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+</div>
+
+
+</section>
+</main>

@@ -1,0 +1,86 @@
+
+<app-admin-dash></app-admin-dash>
+
+<main class="offcanvas-enabled" style="padding-top: 5rem;">
+  <section class="ps-lg-4 pe-lg-3 pt-4">
+    <div class="px-3 pt-2">
+    <div class="card shadow mb-4">
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nom</th> <th>Nom</th><th>statut</th><th>Change</th><th class="text-center">role</th><th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let u of users">
+                        <tr >
+                            <td>{{u.user_id}}</td>
+                        <td>
+                            <span *ngIf="u.enabled==true">
+                               
+                                <span *ngIf="u.enabled==true" class="logged-in">● </span> {{u.username}}
+                                
+                            </span>
+
+                            <span *ngIf="u.enabled==false">
+
+                                <span *ngIf="u.enabled==false" class="logged-out">● </span> {{u.username}}
+
+                            </span>
+
+                      
+                       
+                    </td>
+
+                        <td><span *ngIf="u.enabled==true">Activé </span>
+                            <span *ngIf="u.enabled==false">Deactiver</span></td>
+                        <td>
+
+                            <style>
+                                .logged-in {
+                                    color: green;
+                                    font-size:25px
+                                    }
+
+                                    .logged-out {
+                                    color: red;
+                                    font-size:25px;
+                                    }
+                                </style>
+                              
+                           
+                          <!--   <button (click)="updateStatut(u)" [ngClass]="u.enabled==true?'btn-danger':'btn-success'"class="btn">
+                                <span *ngIf="u.enabled==true">Deactiver</span>
+                                <span *ngIf="u.enabled==false">Activé</span>
+                            </button> -->
+
+                            <div class="form-check form-switch">
+                            <input type="checkbox" (click)="updateStatut(u)"  class="form-check-input" [(ngModel)]="u.enabled" name="enabled">
+
+                         
+                           </div>
+                        </td>
+                        <td class="text-center">
+                            <div  *ngFor="let r of u.roles">
+                            <span class="badge bg-primary"> {{r.role}} </span>
+                        </div>
+                        </td>
+
+                     
+                       
+                        
+                          <td class="text-center"> <a class="btn btn-success" [routerLink]="['/users',u.user_id]">Modifier</a>
+                            &nbsp;&nbsp;
+                            <a class="btn btn-success" [routerLink]="['/addrole',u.user_id]">edit role</a>
+                            <!-- |
+                             <a class="btn btn-danger" (click)="supprimerCategorie(c)">Supprimer</a> --> </td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+</div>
+
+
+</section>
+</main>

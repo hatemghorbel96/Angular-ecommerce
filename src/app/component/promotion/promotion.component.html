@@ -1,0 +1,96 @@
+<app-admin-dash></app-admin-dash>
+
+<main class="offcanvas-enabled" style="padding-top: 5rem;">
+  <section class="ps-lg-4 pe-lg-3 pt-4">
+    
+
+    <div>
+    <h2>Modifier un Produit :</h2>
+    </div>
+
+    <div class="row">
+
+        <div class="col-6">
+
+                <form>
+                        
+                                
+                                            <input hidden type="text" [(ngModel)]="currentProduit.idProduit"
+                                            name="idProduit" class="form-control">
+                                        
+                                    
+                                            
+                                            <input hidden type="text"[(ngModel)]= "currentProduit.nomProduit"
+                                            name="nomProduit" class="form-control">
+                                    
+                                    
+                                            <label >Prix Produit</label>
+                                            <input type="number" [(ngModel)]= "currentProduit.prixProduit"
+                                            name="prixProduit" class="form-control">
+                                        
+                                    
+                                            <label >Prix promo</label>
+                                            <input type="number" [(ngModel)]= "currentProduit.promo"
+                                            name="promo" class="form-control">
+                                    
+                                    
+                                        
+                                            <input hidden type="date" [ngModel]="currentProduit.dateCreation | date: 'yyyy-MM-dd'"(ngModelChange)=" currentProduit.dateCreation= $event" name="dateCreation" class="form-control">
+                                        
+                                        
+                                    
+                                            
+                                            <input hidden type="text" [(ngModel)]= "currentProduit.imgurl"
+                                            name="imgurl" class="form-control">
+                                        
+
+
+                                            
+                                            <select hidden class="form-control form-control" id="idCategory" name="idCategory" [(ngModel)]="updatedCatId">
+                                                <option *ngFor="let c of categories" [value]="c.idCategory" >
+                                                {{c.nomCategory}}
+                                                </option>
+                                            </select>
+                            
+                        
+                                            <button type="submit" (click)="updateProduit()" class="btn btn-success mt-3">Modifer</button>
+                            
+                </form>
+            
+            </div>
+     
+
+        <div class="col-6">
+            <section class="container mt-4 mb-grid-gutter">
+                <div class="bg-faded-info rounded-3 py-4">
+                  <div class="row align-items-center">
+                    <div class="col-md-5">
+                      <div class="px-4 pe-sm-0 ps-sm-5">
+                        
+                        <span class="badge bg-success" *ngIf="produit.promo">En promotion</span>
+                        <span class="badge bg-info" *ngIf="!produit.promo">En origin prix</span>
+                        <h3 class="mt-4 mb-1 text-body fw-light">{{produit.nomProduit}}</h3>
+                        <h2 class="mb-1">{{produit.categorie.nomCategory }}</h2>
+                        <p class="h5 text-body fw-light">{{produit.dateCreation | date:'dd/MM/yyyy'}}</p>
+                        <a class="btn btn-accent" routerLink="/listpromo">Retour<i class="ci-arrow-right fs-ms ms-1"></i></a>
+                      </div>
+                    </div>
+                    <div class="col-md-7"><img [src]="produit.productImages[0].url" alt="iPad Pro Offer"></div>
+                  </div>
+                </div>
+              </section>
+        </div>
+
+
+    </div>
+
+        
+ 
+
+
+  
+
+
+
+</section>
+</main>

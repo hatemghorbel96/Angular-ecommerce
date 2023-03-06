@@ -1,0 +1,102 @@
+<app-admin-dash></app-admin-dash>
+
+<main class="offcanvas-enabled" style="padding-top: 5rem;">
+  <section class="ps-lg-4 pe-lg-3 pt-4">
+    <div class="px-3 pt-2">
+      <div *ngIf="successSlider">
+        <div *ngIf="successSlider==1" class="alert alert-success" role="alert">
+          slider added with success
+        </div>
+        <div *ngIf="successSlider==2" class="alert alert-info" role="alert">
+          slider edited
+        </div>
+        <div *ngIf="successSlider==3" class="alert alert-danger" role="alert">
+         slider deleted
+        </div>
+        
+        
+      </div>
+
+   <a class="btn btn-warning" routerLink="/addslider">Add slider</a>
+    <div class="row mt-3" >
+        <div class="col-4  mt-3" *ngFor="let s of sliders">
+          
+         
+
+                <div class="card " >
+
+
+                  <div class="card-body">
+                    <h5 class="card-title">{{s.titre}}</h5>
+                    <p class="card-text">{{s.description}}</p>
+                    <p class="card-text">{{s.url }}</p>
+                   
+                  <!--   <a *ngIf="authService.isAdmin()" class="btn btn-success" [routerLink]="['/updateProduit',p.idProduit]">Modifier</a>
+                    <a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerProduit(p)">Supprimer</a> -->
+                    <img class="card-img-top img-responsive" src = "{{this.sliderService.host+'/produits/slider/imageSlider/'+s.id}}"  style="width:400px; height:300px;"  alt="">
+              
+                  
+                  
+                   <a class="btn btn-success btn-icon mt-3" [routerLink]="['/updateSlider',s.id]">Modifier</a> &nbsp;
+                   <a class="btn btn-info btn-icon mt-3" data-bs-toggle="modal" href="#exampleModalToggle" (click)="getslider(s.id)">
+                    <i class="ci-edit"> Modifier image</i>
+                  </a> 
+                  </div>
+                </div>
+               
+                
+              </div>
+        </div>
+    </div>
+
+       <!-- modal -->
+
+                 
+
+       <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel">
+  
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form >
+            <div class="modal-body">
+              
+              <div class="mb-md-5 mb-4 pb-md-0 pb-2">
+                <h2 class="h5 mb-2 pb-1">Upload l'image</h2>
+                <p class="mb-4 fs-sm">File types supported: PNG, JPG, GIF, WEBP, MP3 or MP4. Max size: 100mb.</p>
+                <!-- display images-->
+                
+                 <!-- Drag and drop file upload-->
+                <div class="file-drop-area" >
+                    
+                  <a (click)="selectFile.click()" class="file-drop-icon ci-cloud-upload">
+                    
+                  </a><span class="file-drop-message">Drag and drop here to upload</span>
+                </div>
+                <!--   <input class="file-drop-input" type="file" multiple value="select" #selectFile  (change)="onFileSelected($event)"> -->
+                <input class="file-drop-input" type="file" value="select" #selectFile  (change)="selectImage($event)">
+                
+              </div>
+             
+
+            
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" type="submit" (click)="updateImage()" data-bs-dismiss="modal">Enregister</button>
+            </div>
+          </form>
+          </div>
+          
+        </div>
+      </div>
+
+
+  </section>
+  </main>
+
+
+

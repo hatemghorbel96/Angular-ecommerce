@@ -1,0 +1,123 @@
+<app-admin-dash></app-admin-dash>
+
+
+<main class="offcanvas-enabled" style="padding-top: 5rem;">
+    <section class="ps-lg-4 pe-lg-3 pt-4">
+
+         <!-- catprod -->
+         <div class="row">
+
+            <div class="col-4">
+                <div class="card text-white bg-primary">
+                    <div class="card-header">Nomber total de produits</div>
+                    <div class="card-body">
+                      <h5 class="card-title text-white">{{p}} Produits</h5>
+                      <p class="card-text fs-sm">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-4">
+                <div class="card text-white bg-primary">
+                    <div class="card-header">Nomber total du categories</div>
+                    <div class="card-body">
+                      <h5 class="card-title text-white">{{cat}} categories</h5>
+                      <p class="card-text fs-sm">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-4">
+                <div class="card text-white bg-primary">
+                    <div class="card-header">Nomber total du commandes</div>
+                    <div class="card-body">
+                      <h5 class="card-title text-white">{{orders.length}}</h5>
+                      <p class="card-text fs-sm">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+            </div>
+           
+
+        </div>
+
+        <!-- commandes -->
+
+        <hr class="mt-5">
+        <div class="row mt-5">
+
+            <div class="col-3">
+                <div class="card text-white bg-info">
+                    <div class="card-header">Commande not verfier</div>
+                    <div class="card-body">
+                      <h5 class="card-title text-white">{{notverfier}}</h5>
+                      <p class="card-text fs-sm">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-3">
+                <div class="card text-white bg-info">
+                    <div class="card-header">Commande verfier</div>
+                    <div class="card-body">
+                      <h5 class="card-title text-white">{{verfier}}</h5>
+                      <p class="card-text fs-sm">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-3">
+                <div class="card text-white bg-info">
+                    <div class="card-header">Commande en cours</div>
+                    <div class="card-body">
+                      <h5 class="card-title text-white">{{shipping}}</h5>
+                      <p class="card-text fs-sm">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-3">
+                <div class="card text-white bg-info">
+                    <div class="card-header">delivré</div>
+                    <div class="card-body">
+                      <h5 class="card-title text-white">{{delivery}}</h5>
+                      <p class="card-text fs-sm">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                  </div>
+            </div>
+
+        </div>
+
+           <!-- clients -->
+
+           <hr class="mt-5">
+           Best Clients
+           <div class="row mt-5">
+           
+               <div class="col-3" *ngFor="let c of clients">
+                   <div class="card text-white bg-info">
+                       <div class="card-header">{{c.username}}</div>
+                       <div class="card-body">
+                         <h5 class="card-title text-white"></h5>
+                         <p class="card-text fs-sm">{{c.orders | sum:'totalPrice'}} DT en {{c.orders.length}} commandes </p>
+                       </div>
+                     </div>
+               </div>
+          
+   
+           </div>
+           <h1> oc :{{oc}}</h1> 
+           <h1> nov :{{nov}}</h1> 
+           <div style="display: block;">
+
+            <div *ngIf="dataReceived">
+          <canvas baseChart width="800" height="400"
+              [type]="'line'"
+              [data]="lineChartData"
+              [options]="lineChartOptions"
+              [legend]="lineChartLegend">
+            </canvas> 
+          </div>
+          </div>
+                  
+          
+
+         
+
+    </section>
+
+</main>

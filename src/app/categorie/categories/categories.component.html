@@ -1,0 +1,34 @@
+<app-admin-dash></app-admin-dash>
+
+<main class="offcanvas-enabled" style="padding-top: 5rem;">
+  <section class="ps-lg-4 pe-lg-3 pt-4">
+    <div class="px-3 pt-2">
+    <div class="card shadow mb-4">
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th>id</th><th>Nom</th><th>description</th><th>test prod</th><th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let c of categories">
+                        <tr >
+                        <td>{{c.idCategory}}</td>
+                        <td>{{c.nomCategory}}</td>
+                        <td>{{c.description}}</td>
+                        <td> <span *ngFor="let p of c.produits">
+                                {{p.nomProduit}}</span>
+                       </td>
+                    
+                          <td><a class="btn btn-success" [routerLink]="['/updateCategorie',c.idCategory]">Modifier</a> |
+                        <a class="btn btn-danger" (click)="supprimerCategorie(c)">Supprimer</a></td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+</div>
+
+
+</section>
+</main>

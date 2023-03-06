@@ -1,0 +1,18 @@
+
+<div class="widget widget-categories mb-4 pb-4 border-bottom">
+    <h3 class="widget-title">Categories</h3>
+    <div class="accordion mt-n1" id="shop-categories">
+      <!-- Shoes-->
+
+
+      <div class="accordion-item" *ngFor="let c of categories">
+        <h3 class="accordion-header">
+          <a routerLink="/category/{{c.idCategory}}" class="nav-link-style d-block fs-md fw-normal py-3" routerLinkActive="active-link">{{c.nomCategory}}</a>
+        </h3>      
+      </div>
+
+      
+   
+     
+    </div>
+  </div>

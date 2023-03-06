@@ -1,0 +1,72 @@
+
+<app-admin-dash></app-admin-dash>
+
+<main class="offcanvas-enabled" style="padding-top: 5rem;">
+  <section class="ps-lg-4 pe-lg-3 pt-4">
+    <div class="px-3 pt-2">
+
+          <!-- Toolbar-->
+          <div class="d-flex justify-content-between align-items-center pt-lg-2 pb-4 pb-lg-5 mb-lg-3">
+            <div class="d-flex align-items-center">
+              <label class="d-none d-lg-block fs-sm text-light text-nowrap opacity-75 me-2" for="order-sort">Sort orders:</label>
+              <label class="d-lg-none fs-sm text-nowrap opacity-75 me-2" for="order-sort">Sort orders:</label>
+              <select class="form-select" id="value1" [(ngModel)]="value1">
+              
+                <option [value]="5">Date</option>
+                <option [value]="1">not verfied</option>               
+                <option [value]="2">verfied</option>
+                <option [value]="3">shipping</option>
+                <option [value]="4">delivred</option>
+              </select>
+            </div>
+            
+            <a class="btn btn-primary btn-sm d-none d-lg-inline-block" href="account-signin.html"><i class="ci-sign-out me-2"></i>soon</a>
+        
+        </div>
+          
+    <div class="card shadow mb-4">
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>user</th>
+                            <th>date</th>
+                            <th>Total items</th>
+                            <th>Prix</th>
+                            <th>order tracking</th>
+                            <th>status</th>
+                            <th>action</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let o of sortBy()">
+                        <tr >
+                            <td>{{o.id}}</td>
+                            
+                            <td>{{o.user.username}}</td>
+                            <td>{{o.dateCreated | date:'dd/MM/yyyy - H:mm'}}</td>
+                        <td>{{o.totalQuantity}}</td>
+                        <td>{{o.totalPrice | currency:' DT '}}</td>
+                        <td>{{o.orderTrackingNumber}}</td>
+                        <td class="text-center">
+                            <span *ngIf="o.status==1" class="badge bg-danger"> not verfied</span>
+                            <span *ngIf="o.status==2" class="badge bg-info"> verfied</span>
+                            <span *ngIf="o.status==3" class="badge bg-primary"> shipping</span>
+                            <span *ngIf="o.status==4" class="badge bg-success"> delivred</span>
+                        </td>
+                        <td><a routerLink="/orderdetails/{{o.id}}" class="btn btn-primary">consult</a></td>
+                       
+                   
+                    
+                       <!--    <td><a class="btn btn-success" [routerLink]="['/updateCategorie',o.idCategory]">Modifier</a>  </td>  -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+</div>
+
+
+
+</section>
+</main>

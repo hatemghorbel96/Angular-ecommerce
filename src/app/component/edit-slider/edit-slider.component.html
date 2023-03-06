@@ -1,0 +1,48 @@
+
+<app-admin-dash></app-admin-dash>
+
+<main class="offcanvas-enabled" style="padding-top: 5rem;">
+  <section class="ps-lg-4 pe-lg-3 pt-4">
+    <div class="px-3 pt-2">
+
+    <div>
+        <h2>Ajouter un Slider :</h2>
+    </div>
+   
+    <div class="col-sm-2 col-md-2 col-lg-12">
+        <label >Grand Titre</label>
+        <input type="text" [(ngModel)]="currentSlider.titre" name="titre" class="form-control">
+
+    </div>
+
+    <div class="col-sm-2 col-md-2 col-lg-12">
+        <label >Description</label>
+        <input type="text" [(ngModel)]="currentSlider.description" name="description" class="form-control">
+
+    </div>
+
+    <div class="col-sm-2 col-md-2 col-lg-12">
+        <label >Url</label>
+        <input type="text" [(ngModel)]="currentSlider.url" name="url" class="form-control">
+
+    </div>
+
+      <img class="card-img-top img-responsive" src = "{{this.sliderService.host+'/produits/slider/imageSlider/'+currentSlider.id}}"  alt="" style="width:600px;height:400px;">
+
+    <label hidden>ID Produit</label>
+    <div class="col-sm-2 col-md-2 col-lg-12">
+
+       <button (click)="updateSlider()" class="btn btn-success mt-5">Modifier</button>
+
+    </div>
+
+        
+       
+     
+   
+
+</div>
+
+
+</section>
+</main>

@@ -1,0 +1,38 @@
+
+<div class="navbar-tool dropdown ms-3"><a routerLink="/cart-details" class="navbar-tool-icon-box bg-secondary dropdown-toggle" >
+  <span class="navbar-tool-label">{{ totalQuantity }}</span><i class="navbar-tool-icon ci-cart"></i></a>
+    <a routerLink="/cart-details" class="navbar-tool-text" href="shop-cart.html"><small>Mon Panier</small>{{ totalPrice | currency: ' DT ' }}</a>
+            
+    <div class="dropdown-menu dropdown-menu-end" >
+      <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;" >
+        <div style="height: 15rem;" data-simplebar data-simplebar-auto-hide="false" >
+
+          <!-- item-->
+          <div class="widget-cart-item pb-2 border-bottom" *ngFor="let c of cartItems">
+            <button (click)="remove(c)" class="btn-close text-danger" type="button" aria-label="Remove"><span aria-hidden="true">&times;</span></button>
+            <div class="d-flex align-items-center"><a class="flex-shrink-0" href="shop-single-v1.html"><img [src]="c.productImages[0].url" width="64" alt="Product"></a>
+              <div class="ps-2">
+                <h6 class="widget-product-title"><a href="shop-single-v1.html">{{ c.name }}</a></h6>
+                <div class="widget-product-meta">
+                  <span class="text-accent me-2" *ngIf="(c.promo)==null">{{ c.prixProduit | currency: 'USD' }}</span>
+                  <span class="text-accent me-2" *ngIf="(c.promo)!=null">{{ c.promo | currency: 'USD' }}</span>
+                  <span class="text-muted">x {{ c.quantity }}</span></div>
+              </div>
+            </div>
+          </div>
+          
+          <div *ngIf="cartItems.length == 0" class="alert alert-warning col-md-12" role="alert">
+            Votre panier est vide. 
+        </div>
+        
+        </div>
+        <div class="d-flex flex-wrap justify-content-between align-items-center py-3">
+          <div class="fs-sm me-2 py-2"><span class="text-muted">Total:</span><span class="text-accent fs-base ms-1">{{ totalPrice | currency: ' DT ' }}</span></div><a class="btn btn-outline-secondary btn-sm" routerLink="/cart-details">Consulter le panier<i class="ci-arrow-right ms-1 me-n1"></i></a>
+        </div>
+        
+        <button *ngIf="cartItems.length == 0" class="btn btn-primary btn-sm d-block w-100" routerLink="/checkout" disabled><i class="ci-card me-2 fs-base align-middle" ></i>Vérifier</button>
+        <a *ngIf="cartItems.length != 0" class="btn btn-primary btn-sm d-block w-100" routerLink="/checkout"><i class="ci-card me-2 fs-base align-middle"></i>Vérifier</a>
+
+      </div>
+    </div>
+  </div>
